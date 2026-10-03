@@ -10,270 +10,261 @@
 
     html, body {
       margin: 0;
-      padding: 0;
       width: 100vw;
       height: 100vh;
       overflow: hidden;
       background: gold;
-      font-family: "DFKai-SB", "BiauKai", "標楷體", serif;
       color: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: "DFKai-SB", "BiauKai", "標楷體", serif;
     }
 
-    .red-text { color: red; font-weight: 700; }
-    .blue-text { color: blue; font-weight: 700; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-    #report-container {
+    .red { color: red; font-weight: 700; }
+    .blue { color: blue; font-weight: 700; }
+
+    #report {
       width: 1600px;
       height: 900px;
-      padding: 48px 70px 42px 70px;
+      padding: 32px 56px 28px;
       transform-origin: center center;
+      display: grid;
+      grid-template-rows: 70px 52px 2px 310px 1fr 58px;
+      row-gap: 10px;
       overflow: hidden;
     }
 
     .title {
+      margin: 0;
       text-align: center;
-      font-size: 58px;
-      line-height: 1;
-      letter-spacing: 1.15em;
-      padding-left: 1.15em;
       color: red;
+      font-size: 54px;
+      line-height: 70px;
+      letter-spacing: 1.05em;
+      padding-left: 1.05em;
       font-weight: 700;
-      margin: 0 0 26px 0;
     }
 
-    .top-row {
+    .datebar {
       display: grid;
-      grid-template-columns: 310px 1fr;
+      grid-template-columns: 280px 1fr;
       align-items: center;
-      gap: 24px;
-      font-size: 29px;
-      line-height: 1.55;
-      margin-bottom: 18px;
+      font-size: 26px;
+      line-height: 1;
       white-space: nowrap;
     }
 
-    .buddha-line { font-size: 29px; }
-    .date-line { text-align: right; }
-    .date-line span { margin: 0 8px; }
-
-    .red-line {
-      border-top: 3px solid red;
-      height: 0;
-      margin: 0 0 18px 0;
+    .datebar .date {
+      text-align: right;
     }
 
-    .main-row {
+    .rule {
+      border-top: 2px solid red;
+    }
+
+    .main {
       display: grid;
-      grid-template-columns: 1.18fr 0.82fr;
-      gap: 44px;
-      height: 438px;
-      overflow: hidden;
+      grid-template-columns: 55% 45%;
+      gap: 36px;
+      min-height: 0;
     }
 
     .section-title {
       color: red;
-      font-size: 31px;
+      font-size: 29px;
+      line-height: 34px;
       font-weight: 700;
       border-bottom: 2px solid red;
-      padding-bottom: 5px;
-      margin-bottom: 16px;
-      line-height: 1;
+      margin-bottom: 10px;
     }
 
-    .info-table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-      font-size: 31px;
-      line-height: 1.48;
-    }
-
-    .info-table td {
-      vertical-align: top;
-      padding: 2px 0;
-    }
-
-    .info-label {
-      width: 158px;
-      white-space: nowrap;
-      color: #111;
-    }
-
-    .info-value {
-      word-break: keep-all;
-      overflow-wrap: anywhere;
-    }
-
-    .leader-line {
-      display: block;
-    }
-
+    .info-table,
     .stats-table {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
-      font-size: 31px;
-      line-height: 1.35;
+    }
+
+    .info-table {
+      font-size: 27px;
+      line-height: 1.38;
+    }
+
+    .info-table td {
+      padding: 3px 0;
+      vertical-align: top;
+    }
+
+    .info-label {
+      width: 145px;
+      white-space: nowrap;
+    }
+
+    .info-value {
+      overflow-wrap: anywhere;
+      word-break: keep-all;
+    }
+
+    .stats-table {
+      font-size: 25px;
+      line-height: 1.25;
     }
 
     .stats-table td {
-      border-bottom: 1.8px solid rgba(255, 0, 0, 0.55);
-      padding: 13px 0;
+      padding: 8px 5px;
+      border-bottom: 1px solid rgba(255,0,0,.55);
       white-space: nowrap;
+      text-align: left;
     }
 
-    .stats-label { width: 174px; }
-    .stats-num { font-size: 38px; padding: 0 10px; }
-    .stats-total td {
-      border-bottom: 3px solid red;
-      padding-top: 19px;
-      font-size: 35px;
+    .stats-table .label {
+      width: 145px;
     }
 
-    .bottom-row {
-      height: 254px;
-      margin-top: 21px;
-      display: grid;
-      grid-template-columns: 1fr 405px;
-      gap: 34px;
-      overflow: hidden;
-    }
-
-    .notes-box {
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    .notes-title {
-      color: red;
-      font-size: 30px;
+    .stats-table .num {
+      color: blue;
       font-weight: 700;
+      font-size: 32px;
+      display: inline-block;
+      min-width: 46px;
+      text-align: center;
+    }
+
+    .stats-table .grand td {
       border-bottom: 2px solid red;
-      padding-bottom: 5px;
-      margin-bottom: 8px;
-      line-height: 1;
+      font-size: 28px;
+      padding-top: 10px;
     }
 
-    .notes-grid {
+    .leave-area {
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .leave-head {
+      color: red;
+      font-size: 27px;
+      font-weight: 700;
+      line-height: 32px;
+      border-bottom: 2px solid red;
+      margin-bottom: 7px;
+    }
+
+    .leave-line {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      height: 145px;
-      overflow: hidden;
-      font-size: 25px;
-      line-height: 1.22;
-    }
-
-    .leave-block {
-      min-width: 0;
-      overflow: hidden;
+      grid-template-columns: 88px 1fr;
+      gap: 8px;
+      align-items: start;
+      margin-bottom: 5px;
+      min-height: 0;
     }
 
     .leave-label {
-      color: #111;
-      font-weight: 700;
-      margin-bottom: 4px;
+      font-size: 22px;
+      line-height: 25px;
       white-space: nowrap;
+      font-weight: 700;
     }
 
     .leave-list {
+      display: grid;
+      grid-template-columns: repeat(var(--cols, 8), minmax(0, 1fr));
+      gap: 1px 12px;
       color: blue;
       font-weight: 700;
-      white-space: pre-wrap;
-      column-count: 2;
-      column-gap: 24px;
-      overflow: visible;
-      word-break: keep-all;
-      overflow-wrap: anywhere;
+      font-size: var(--leave-size, 19px);
+      line-height: 1.24;
+      min-width: 0;
     }
 
-    .course-line {
-      margin-top: 9px;
-      border-top: 1.8px solid rgba(255, 0, 0, 0.55);
-      padding-top: 8px;
-      font-size: 26px;
-      line-height: 1.25;
-      white-space: normal;
-      word-break: keep-all;
-      overflow-wrap: anywhere;
-    }
-
-    .signature-box {
-      align-self: end;
-      text-align: right;
-      font-size: 31px;
-      line-height: 1.45;
-      padding-bottom: 8px;
+    .leave-item {
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
     }
 
-    <?
-      function getVal(data) {
-        var str = "";
-        if (!data) return str;
-        for (var i = 0; i < data.length; i++) {
-          var rowText = "";
-          for (var j = 0; j < data[i].length; j++) {
-            if (data[i][j] !== "" && data[i][j] !== null) {
-              rowText += data[i][j];
-            }
-          }
-          if (rowText !== "") {
+    .empty-leave {
+      color: #111;
+      font-weight: 400;
+    }
+
+    .footer {
+      border-top: 2px solid red;
+      padding-top: 7px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      font-size: 23px;
+      line-height: 1.25;
+      min-width: 0;
+    }
+
+    .course {
+      min-width: 0;
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+      word-break: keep-all;
+    }
+
+    .signature {
+      white-space: nowrap;
+      text-align: right;
+      font-size: 27px;
+    }
+  </style>
+
+  <?
+    function getVal(data) {
+      var str = "";
+      if (!data) return str;
+      for (var i = 0; i < data.length; i++) {
+        for (var j = 0; j < data[i].length; j++) {
+          if (data[i][j] !== "" && data[i][j] !== null) {
             if (str !== "") str += "\n";
-            str += rowText;
+            str += data[i][j];
           }
         }
-        return str;
       }
-    ?>
-  </style>
+      return str;
+    }
+  ?>
 </head>
 
 <body>
-  <div id="report-container">
+  <div id="report">
     <h1 class="title">呈奏</h1>
 
-    <div class="top-row">
-      <div class="buddha-line"><span class="red-text"><?= getVal(getData1()) ?></span>　大慈大悲</div>
-      <div class="date-line">
-        天運歲次 <span class="red-text"><?= getVal(getData28()) ?></span> 年　
-        西元 <span class="red-text"><?= getVal(getData27()) ?></span> 年　
-        <span class="red-text"><?= getVal(getData2()) ?></span> 月
-        <span class="red-text"><?= getVal(getData3()) ?></span> 日　
-        為期 <span class="red-text"><?= getVal(getData4()) ?></span> 天
+    <div class="datebar">
+      <div><span class="red"><?= getVal(getData1()) ?></span>　大慈大悲</div>
+      <div class="date">
+        天運歲次 <span class="red"><?= getVal(getData28()) ?></span> 年　
+        西元 <span class="red"><?= getVal(getData27()) ?></span> 年　
+        <span class="red"><?= getVal(getData2()) ?></span> 月　
+        <span class="red"><?= getVal(getData3()) ?></span> 日　
+        為期 <span class="red"><?= getVal(getData4()) ?></span> 天
       </div>
     </div>
 
-    <div class="red-line"></div>
+    <div class="rule"></div>
 
-    <div class="main-row">
+    <div class="main">
       <section>
         <div class="section-title">班務資料</div>
         <table class="info-table">
-          <tr>
-            <td class="info-label">班　　名：</td>
-            <td class="info-value blue-text"><?= getVal(getData5()) ?></td>
-          </tr>
-          <tr>
-            <td class="info-label">主辦單位：</td>
-            <td class="info-value blue-text">寶光崇正 <?= getVal(getData6()) ?></td>
-          </tr>
-          <tr>
-            <td class="info-label">監　　班：</td>
-            <td class="info-value blue-text"><?= getVal(getData7()) ?></td>
-          </tr>
-          <tr>
-            <td class="info-label">主　　班：</td>
-            <td class="info-value blue-text"><?= getVal(getData8()) ?></td>
-          </tr>
+          <tr><td class="info-label">班　　名：</td><td class="info-value blue"><?= getVal(getData5()) ?></td></tr>
+          <tr><td class="info-label">主辦單位：</td><td class="info-value blue">寶光崇正 <?= getVal(getData6()) ?></td></tr>
+          <tr><td class="info-label">監　　班：</td><td class="info-value blue"><?= getVal(getData7()) ?></td></tr>
+          <tr><td class="info-label">主　　班：</td><td class="info-value blue"><?= getVal(getData8()) ?></td></tr>
           <tr>
             <td class="info-label">領　　班：</td>
-            <td class="info-value blue-text">
-              <span class="leader-line"><?= getVal(getData9()) ?></span>
-              <span class="leader-line"><?= getVal(getData10()) ?></span>
+            <td class="info-value blue">
+              <?= getVal(getData9()) ?>
+              <? if (getVal(getData10()) !== "") { ?><br><?= getVal(getData10()) ?><? } ?>
             </td>
           </tr>
         </table>
@@ -283,102 +274,131 @@
         <div class="section-title">人員統計</div>
         <table class="stats-table">
           <tr>
-            <td class="stats-label">班　　員：</td>
-            <td>乾 <span class="blue-text stats-num"><?= getVal(getData11()) ?></span> 名</td>
-            <td>坤 <span class="blue-text stats-num"><?= getVal(getData12()) ?></span> 名</td>
-            <td>計 <span class="blue-text stats-num"><?= getVal(getData13()) ?></span> 名</td>
+            <td class="label">班　　員：</td>
+            <td>乾 <span class="num"><?= getVal(getData11()) ?></span> 名</td>
+            <td>坤 <span class="num"><?= getVal(getData12()) ?></span> 名</td>
+            <td>計 <span class="num"><?= getVal(getData13()) ?></span> 名</td>
           </tr>
           <tr>
-            <td class="stats-label">小 班 長：</td>
-            <td>乾 <span class="blue-text stats-num"><?= getVal(getData14()) ?></span> 名</td>
-            <td>坤 <span class="blue-text stats-num"><?= getVal(getData15()) ?></span> 名</td>
-            <td>計 <span class="blue-text stats-num"><?= getVal(getData16()) ?></span> 名</td>
+            <td class="label">小 班 長：</td>
+            <td>乾 <span class="num"><?= getVal(getData14()) ?></span> 名</td>
+            <td>坤 <span class="num"><?= getVal(getData15()) ?></span> 名</td>
+            <td>計 <span class="num"><?= getVal(getData16()) ?></span> 名</td>
           </tr>
           <tr>
-            <td class="stats-label">班內服務：</td>
-            <td>乾 <span class="blue-text stats-num"><?= getVal(getData17()) ?></span> 名</td>
-            <td>坤 <span class="blue-text stats-num"><?= getVal(getData18()) ?></span> 名</td>
+            <td class="label">班內服務：</td>
+            <td>乾 <span class="num"><?= getVal(getData17()) ?></span> 名</td>
+            <td>坤 <span class="num"><?= getVal(getData18()) ?></span> 名</td>
             <td></td>
           </tr>
           <tr>
-            <td class="stats-label">班外服務：</td>
-            <td>乾 <span class="blue-text stats-num"><?= getVal(getData19()) ?></span> 名</td>
-            <td>坤 <span class="blue-text stats-num"><?= getVal(getData20()) ?></span> 名</td>
+            <td class="label">班外服務：</td>
+            <td>乾 <span class="num"><?= getVal(getData19()) ?></span> 名</td>
+            <td>坤 <span class="num"><?= getVal(getData20()) ?></span> 名</td>
             <td></td>
           </tr>
           <tr>
-            <td class="stats-label">合　　計：</td>
-            <td>乾 <span class="blue-text stats-num"><?= getVal(getData21()) ?></span> 名</td>
-            <td>坤 <span class="blue-text stats-num"><?= getVal(getData22()) ?></span> 名</td>
+            <td class="label">合　　計：</td>
+            <td>乾 <span class="num"><?= getVal(getData21()) ?></span> 名</td>
+            <td>坤 <span class="num"><?= getVal(getData22()) ?></span> 名</td>
             <td></td>
           </tr>
-          <tr class="stats-total">
-            <td class="stats-label">共　　計：</td>
-            <td colspan="3">乾坤 <span class="blue-text stats-num"><?= getVal(getData23()) ?></span> 名</td>
+          <tr class="grand">
+            <td class="label">共　　計：</td>
+            <td colspan="3">乾坤 <span class="num"><?= getVal(getData23()) ?></span> 名</td>
           </tr>
         </table>
       </section>
     </div>
 
-    <div class="bottom-row">
-      <section class="notes-box">
-        <div class="notes-title">備註與課程</div>
-        <div class="notes-grid">
-          <div class="leave-block">
-            <div class="leave-label">病假--</div>
-            <div class="leave-list" id="sick-list"><?= getVal(getData25()) ?></div>
-          </div>
-          <div class="leave-block">
-            <div class="leave-label">事假--</div>
-            <div class="leave-list" id="personal-list"><?= getVal(getData26()) ?></div>
-          </div>
-        </div>
-        <div class="course-line">
-          今日人事課程：<span class="blue-text"><?= getVal(getData29()) ?></span>
-        </div>
-      </section>
+    <section class="leave-area">
+      <div class="leave-head">備　註</div>
 
-      <div class="signature-box">
-        弟子 <span class="blue-text"><?= getVal(getData24()) ?></span> 叩呈
+      <div class="leave-line">
+        <div class="leave-label">病假--</div>
+        <div id="sick-list" class="leave-list blue"><?= getVal(getData25()) ?></div>
+      </div>
+
+      <div class="leave-line">
+        <div class="leave-label">事假--</div>
+        <div id="personal-list" class="leave-list blue"><?= getVal(getData26()) ?></div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="course">
+        今日人事課程：<span class="blue"><?= getVal(getData29()) ?></span>
+      </div>
+      <div class="signature">
+        弟子 <span class="blue"><?= getVal(getData24()) ?></span> 叩呈
       </div>
     </div>
   </div>
 
   <script>
-    function autoScale() {
-      var container = document.getElementById('report-container');
-      container.style.transform = 'scale(1)';
-
-      var winW = window.innerWidth;
-      var winH = window.innerHeight;
-      var contentW = container.offsetWidth;
-      var contentH = container.offsetHeight;
-      if (!contentW || !contentH) return;
-
-      var scale = Math.min(winW / contentW, winH / contentH) * 0.985;
-      container.style.transform = 'scale(' + scale + ')';
-    }
-
-    function shrinkIfNeeded(selector, minSize) {
-      var el = document.querySelector(selector);
+    function makeLeaveGrid(id) {
+      var el = document.getElementById(id);
       if (!el) return;
-      var size = parseFloat(window.getComputedStyle(el).fontSize);
-      while (el.scrollHeight > el.clientHeight && size > minSize) {
-        size -= 1;
-        el.style.fontSize = size + 'px';
+
+      var raw = (el.textContent || "").replace(/\r/g, "").trim();
+      el.textContent = "";
+
+      if (!raw) {
+        var none = document.createElement("span");
+        none.className = "empty-leave";
+        none.textContent = "無";
+        el.style.setProperty("--cols", 1);
+        el.appendChild(none);
+        return;
       }
+
+      var rows = raw.split(/\n+/).map(function(s) {
+        return s.replace(/\t+/g, "　").replace(/\s{2,}/g, "　").trim();
+      }).filter(Boolean);
+
+      var count = rows.length;
+      var cols = 6;
+      var size = 20;
+
+      if (count > 72) { cols = 13; size = 16; }
+      else if (count > 60) { cols = 12; size = 17; }
+      else if (count > 48) { cols = 10; size = 18; }
+      else if (count > 36) { cols = 8; size = 19; }
+      else if (count > 24) { cols = 7; size = 20; }
+      else if (count > 12) { cols = 6; size = 20; }
+      else { cols = 4; size = 21; }
+
+      el.style.setProperty("--cols", cols);
+      el.style.setProperty("--leave-size", size + "px");
+
+      rows.forEach(function(row) {
+        var item = document.createElement("div");
+        item.className = "leave-item";
+        item.textContent = row;
+        el.appendChild(item);
+      });
     }
 
-    function fitPage() {
-      shrinkIfNeeded('.info-table', 24);
-      shrinkIfNeeded('.stats-table', 24);
-      shrinkIfNeeded('.notes-grid', 18);
-      shrinkIfNeeded('.course-line', 19);
+    function autoScale() {
+      var report = document.getElementById("report");
+      report.style.transform = "scale(1)";
+
+      var w = report.offsetWidth;
+      var h = report.offsetHeight;
+      if (!w || !h) return;
+
+      var scale = Math.min(window.innerWidth / w, window.innerHeight / h) * 0.985;
+      report.style.transform = "scale(" + scale + ")";
+    }
+
+    function init() {
+      makeLeaveGrid("sick-list");
+      makeLeaveGrid("personal-list");
       autoScale();
     }
 
-    window.addEventListener('load', fitPage);
-    window.addEventListener('resize', autoScale);
+    window.addEventListener("load", init);
+    window.addEventListener("resize", autoScale);
   </script>
 </body>
 </html>
