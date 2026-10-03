@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <style>
+    :root {
+      --paper: #fff8d9;
+      --paper-deep: #ffe58a;
+      --gold: #d69b00;
+      --gold-dark: #9f6f00;
+      --red: #c80000;
+      --red-dark: #8e0000;
+      --blue: #0648b8;
+      --ink: #2a1600;
+      --muted: #725016;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: "DFKai-sb", "BiauKai", "標楷體", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 50% 10%, #fff4a8 0%, #ffd747 38%, #d99a00 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 舞台負責置中；真正縮放的是 report-container */
+    #stage {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    #report-container {
+      width: 1160px;
+      transform-origin: center center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,244,191,.92)),
+        var(--paper);
+      border: 8px double var(--red-dark);
+      border-radius: 28px;
+      padding: 34px 46px 30px;
+      box-shadow:
+        0 24px 70px rgba(80, 45, 0, .34),
+        inset 0 0 0 4px rgba(214, 155, 0, .28);
+      position: relative;
+    }
+
+    #report-container::before,
+    #report-container::after {
+      content: "";
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      height: 6px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--red), var(--gold), transparent);
+      opacity: .72;
+    }
+
+    #report-container::before { top: 18px; }
+    #report-container::after { bottom: 18px; }
+
+    .header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .title {
+      display: inline-flex;
+      gap: 84px;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-size: 68px;
+      font-weight: 900;
+      line-height: 1;
+      text-shadow: 0 2px 0 rgba(255,255,255,.72);
+      padding: 2px 28px 10px;
+      border-bottom: 3px solid rgba(200, 0, 0, .32);
+    }
+
+    .subtitle {
+      margin-top: 14px;
+      font-size: 32px;
+      line-height: 1.35;
+      letter-spacing: .04em;
+    }
+
+    .red-text {
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .blue-text {
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .date-card {
+      margin: 14px auto 20px;
+      padding: 14px 22px;
+      width: 88%;
+      text-align: center;
+      font-size: 28px;
+      line-height: 1.55;
+      background: rgba(255, 255, 255, .58);
+      border: 2px solid rgba(214, 155, 0, .55);
+      border-radius: 18px;
+      box-shadow: inset 0 0 18px rgba(214, 155, 0, .12);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 10px 0 10px;
+      color: var(--red-dark);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      height: 2px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, rgba(159,111,0,.72), transparent);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      row-gap: 9px;
+      column-gap: 16px;
+      margin-bottom: 16px;
+      padding: 18px 22px;
+      background: rgba(255,255,255,.48);
+      border: 1px solid rgba(214,155,0,.42);
+      border-radius: 18px;
+      font-size: 27px;
+      line-height: 1.36;
+    }
+
+    .label {
+      color: var(--muted);
+      font-weight: 900;
+      white-space: nowrap;
+      text-align: justify;
+      text-align-last: justify;
+    }
+
+    .value {
+      min-width: 0;
+    }
+
+    .preline {
+      white-space: pre-line;
+    }
+
+    .stats-wrap {
+      margin-top: 4px;
+      border: 1px solid rgba(214,155,0,.5);
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255,255,255,.55);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: 168px 1fr 1fr 1fr;
+      min-height: 54px;
+      border-bottom: 1px solid rgba(214,155,0,.34);
+      font-size: 28px;
+      line-height: 1.25;
+    }
+
+    .stats-row:last-child {
+      border-bottom: none;
+    }
+
+    .stats-name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      background: linear-gradient(180deg, rgba(255,229,138,.84), rgba(255,210,80,.72));
+      color: var(--red-dark);
+      font-weight: 900;
+      border-right: 1px solid rgba(214,155,0,.46);
+      white-space: nowrap;
+    }
+
+    .stat-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-right: 1px solid rgba(214,155,0,.22);
+      white-space: nowrap;
+    }
+
+    .stat-cell:last-child {
+      border-right: none;
+    }
+
+    .role {
+      color: var(--muted);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .num {
+      color: var(--blue);
+      font-size: 34px;
+      font-weight: 900;
+      min-width: 42px;
+      text-align: center;
+    }
+
+    .unit {
+      color: var(--ink);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .total-row .stats-name,
+    .grand-row .stats-name {
+      background: linear-gradient(180deg, rgba(255,207,99,.96), rgba(238,171,0,.86));
+    }
+
+    .grand-row .stat-cell {
+      grid-column: span 3;
+      font-size: 31px;
+    }
+
+    .footer-section {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 18px;
+      margin-top: 18px;
+      font-size: 26px;
+      line-height: 1.45;
+    }
+
+    .note-box,
+    .sign-box {
+      background: rgba(255,255,255,.48);
+      border: 1px solid rgba(214,155,0,.42);
+      border-radius: 18px;
+      padding: 15px 18px;
+    }
+
+    .note-title {
+      color: var(--red-dark);
+      font-size: 25px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 8px 10px;
+      align-items: start;
+    }
+
+    .note-label {
+      color: var(--muted);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .note-content {
+      color: var(--blue);
+      font-weight: 900;
+      white-space: pre-line;
+      word-break: break-word;
+    }
+
+    .sign-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+
+    .sign-title {
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .sign-name {
+      color: var(--blue);
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.25;
+      white-space: pre-line;
+    }
+
+    .kowtow {
+      color: var(--red-dark);
+      font-weight: 900;
+      font-size: 28px;
+    }
+
+    .course-box {
+      grid-column: 1 / -1;
+      background: rgba(255,255,255,.48);
+      border: 1px solid rgba(214,155,0,.42);
+      border-radius: 18px;
+      padding: 12px 18px;
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .course-label {
+      color: var(--red-dark);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .course-content {
+      color: var(--blue);
+      font-weight: 900;
+      white-space: pre-line;
+      word-break: break-word;
+    }
+
+    @media (max-width: 720px) {
+      #report-container {
+        width: 980px;
+        padding: 28px 34px 26px;
+      }
+
+      .title {
+        font-size: 62px;
+        gap: 68px;
+      }
+
+      .footer-section {
+        grid-template-columns: 1fr 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <?
+    function getVal(data) {
+      if (!data) return "";
+      var rows = [];
+      for (var i = 0; i < data.length; i++) {
+        var rowText = "";
+        for (var j = 0; j < data[i].length; j++) {
+          if (data[i][j] !== "" && data[i][j] !== null && data[i][j] !== undefined) {
+            rowText += data[i][j];
+          }
+        }
+        if (rowText !== "") rows.push(rowText);
+      }
+      return rows.join("\n");
+    }
+  ?>
+
+  <div id="stage">
+    <main id="report-container" aria-label="呈奏呈報表">
+      <header class="header">
+        <div class="title"><span>呈</span><span>奏</span></div>
+        <div class="subtitle">
+          <span class="red-text"><?= getVal(getData1()) ?></span> 大慈大悲
+        </div>
+      </header>
+
+      <section class="date-card">
+        天運歲次 <span class="red-text"><?= getVal(getData28()) ?></span> 年　
+        西元 <span class="red-text"><?= getVal(getData27()) ?></span> 年<br>
+        <span class="red-text"><?= getVal(getData2()) ?></span> 月
+        <span class="red-text"><?= getVal(getData3()) ?></span> 日　
+        為期 <span class="red-text"><?= getVal(getData4()) ?></span> 天
+      </section>
+
+      <div class="section-title">班務資料</div>
+      <section class="info-grid">
+        <div class="label">班　　名</div>
+        <div class="value blue-text preline"><?= getVal(getData5()) ?></div>
+
+        <div class="label">主辦單位</div>
+        <div class="value blue-text preline">寶光崇正 <?= getVal(getData6()) ?></div>
+
+        <div class="label">監　　班</div>
+        <div class="value blue-text preline"><?= getVal(getData7()) ?></div>
+
+        <div class="label">主　　班</div>
+        <div class="value blue-text preline"><?= getVal(getData8()) ?></div>
+
+        <div class="label">領　　班</div>
+        <div class="value blue-text preline"><?= getVal(getData9()) ?>
+<?= getVal(getData10()) ?></div>
+      </section>
+
+      <div class="section-title">人員統計</div>
+      <section class="stats-wrap" aria-label="人員統計">
+        <div class="stats-row">
+          <div class="stats-name">班　　員</div>
+          <div class="stat-cell"><span class="role">乾</span><span class="num"><?= getVal(getData11()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">坤</span><span class="num"><?= getVal(getData12()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">計</span><span class="num"><?= getVal(getData13()) ?></span><span class="unit">名</span></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stats-name">小 班 長</div>
+          <div class="stat-cell"><span class="role">乾</span><span class="num"><?= getVal(getData14()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">坤</span><span class="num"><?= getVal(getData15()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">計</span><span class="num"><?= getVal(getData16()) ?></span><span class="unit">名</span></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stats-name">班內服務</div>
+          <div class="stat-cell"><span class="role">乾</span><span class="num"><?= getVal(getData17()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">坤</span><span class="num"><?= getVal(getData18()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">計</span><span class="num">—</span><span class="unit">名</span></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stats-name">班外服務</div>
+          <div class="stat-cell"><span class="role">乾</span><span class="num"><?= getVal(getData19()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">坤</span><span class="num"><?= getVal(getData20()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">計</span><span class="num">—</span><span class="unit">名</span></div>
+        </div>
+
+        <div class="stats-row total-row">
+          <div class="stats-name">合　　計</div>
+          <div class="stat-cell"><span class="role">乾</span><span class="num"><?= getVal(getData21()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">坤</span><span class="num"><?= getVal(getData22()) ?></span><span class="unit">名</span></div>
+          <div class="stat-cell"><span class="role">合計</span><span class="num">—</span></div>
+        </div>
+
+        <div class="stats-row grand-row">
+          <div class="stats-name">共　　計</div>
+          <div class="stat-cell"><span class="role">乾坤</span><span class="num"><?= getVal(getData23()) ?></span><span class="unit">名</span></div>
+        </div>
+      </section>
+
+      <section class="footer-section">
+        <div class="note-box">
+          <div class="note-title">備　註</div>
+          <div class="note-grid">
+            <div class="note-label">病假：</div>
+            <div class="note-content"><?= getVal(getData25()) ?></div>
+            <div class="note-label">事假：</div>
+            <div class="note-content"><?= getVal(getData26()) ?></div>
+          </div>
+        </div>
+
+        <div class="sign-box">
+          <div class="sign-title">弟子</div>
+          <div class="sign-name"><?= getVal(getData24()) ?></div>
+          <div class="kowtow">叩呈</div>
+        </div>
+
+        <div class="course-box">
+          <div class="course-label">今日人事</div>
+          <div class="course-content"><?= getVal(getData29()) ?></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function autoScale() {
+      var container = document.getElementById('report-container');
+      if (!container) return;
+
+      container.style.transform = 'scale(1)';
+
+      var margin = Math.max(18, Math.min(window.innerWidth, window.innerHeight) * 0.035);
+      var winW = window.innerWidth - margin * 2;
+      var winH = window.innerHeight - margin * 2;
+      var contentW = container.scrollWidth;
+      var contentH = container.scrollHeight;
+
+      if (contentW === 0 || contentH === 0) return;
+
+      var scaleX = winW / contentW;
+      var scaleY = winH / contentH;
+      var finalScale = Math.min(scaleX, scaleY, 1.22);
+      finalScale = Math.max(finalScale, 0.35);
+
+      container.style.transform = 'scale(' + finalScale + ')';
+    }
+
+    window.addEventListener('load', function () {
+      requestAnimationFrame(autoScale);
+      setTimeout(autoScale, 250);
+    });
+    window.addEventListener('resize', autoScale);
+    window.addEventListener('orientationchange', function () {
+      setTimeout(autoScale, 350);
+    });
+  </script>
+</body>
+</html>
