@@ -15,62 +15,61 @@
       height: 100vh;
       overflow: hidden;
       background: gold;
+      font-family: "DFKai-SB", "BiauKai", "標楷體", serif;
+      color: #111;
       display: flex;
-      justify-content: center;
       align-items: center;
-      font-family: "DFKai-sb", "BiauKai", "標楷體", serif;
-      color: #000;
-    }
-
-    #report-container {
-      width: 1600px;
-      height: 900px;
-      padding: 36px 72px 34px 72px;
-      background: gold;
-      transform-origin: center center;
-      overflow: hidden;
+      justify-content: center;
     }
 
     .red-text { color: red; font-weight: 700; }
     .blue-text { color: blue; font-weight: 700; }
 
+    #report-container {
+      width: 1600px;
+      height: 900px;
+      padding: 48px 70px 42px 70px;
+      transform-origin: center center;
+      overflow: hidden;
+    }
+
     .title {
       text-align: center;
-      color: red;
-      font-size: 60px;
-      font-weight: 700;
-      letter-spacing: 1.1em;
-      padding-left: 1.1em;
+      font-size: 58px;
       line-height: 1;
+      letter-spacing: 1.15em;
+      padding-left: 1.15em;
+      color: red;
+      font-weight: 700;
       margin: 0 0 26px 0;
     }
 
-    .top-line {
+    .top-row {
       display: grid;
-      grid-template-columns: 330px 1fr;
+      grid-template-columns: 310px 1fr;
       align-items: center;
-      font-size: 30px;
-      line-height: 1.35;
-      border-bottom: 3px solid red;
-      padding-bottom: 22px;
-      margin-bottom: 24px;
+      gap: 24px;
+      font-size: 29px;
+      line-height: 1.55;
+      margin-bottom: 18px;
       white-space: nowrap;
     }
 
-    .buddha-name {
-      font-size: 30px;
+    .buddha-line { font-size: 29px; }
+    .date-line { text-align: right; }
+    .date-line span { margin: 0 8px; }
+
+    .red-line {
+      border-top: 3px solid red;
+      height: 0;
+      margin: 0 0 18px 0;
     }
 
-    .date-line {
-      text-align: right;
-      word-spacing: 10px;
-    }
-
-    .main-grid {
+    .main-row {
       display: grid;
-      grid-template-columns: 1.18fr 0.92fr;
-      column-gap: 44px;
-      height: 610px;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 44px;
+      height: 438px;
       overflow: hidden;
     }
 
@@ -78,29 +77,18 @@
       color: red;
       font-size: 31px;
       font-weight: 700;
-      line-height: 1;
       border-bottom: 2px solid red;
-      padding-bottom: 8px;
-      margin-bottom: 12px;
-    }
-
-    .left-column, .right-column {
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    .info-area {
-      height: 268px;
-      border-bottom: 2px solid rgba(255, 0, 0, 0.55);
-      overflow: hidden;
+      padding-bottom: 5px;
+      margin-bottom: 16px;
+      line-height: 1;
     }
 
     .info-table {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
-      font-size: 30px;
-      line-height: 1.42;
+      font-size: 31px;
+      line-height: 1.48;
     }
 
     .info-table td {
@@ -109,132 +97,147 @@
     }
 
     .info-label {
-      width: 142px;
+      width: 158px;
       white-space: nowrap;
-      letter-spacing: 0.12em;
+      color: #111;
     }
 
     .info-value {
-      word-break: break-word;
+      word-break: keep-all;
       overflow-wrap: anywhere;
     }
 
-    .notes-area {
-      height: 318px;
-      padding-top: 15px;
-      overflow: hidden;
-    }
-
-    .notes-grid {
-      display: grid;
-      grid-template-columns: 112px 1fr;
-      row-gap: 8px;
-      column-gap: 6px;
-      font-size: 25px;
-      line-height: 1.22;
-      height: 208px;
-      overflow: hidden;
-    }
-
-    .note-label {
-      white-space: nowrap;
-    }
-
-    .note-text {
-      white-space: pre-line;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-      column-count: 2;
-      column-gap: 22px;
-      max-height: 170px;
-      overflow: hidden;
-    }
-
-    .today-row {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: 142px 1fr;
-      column-gap: 6px;
-      font-size: 27px;
-      line-height: 1.25;
-      max-height: 76px;
-      overflow: hidden;
-    }
-
-    .today-text {
-      white-space: pre-line;
-      word-break: break-word;
-      overflow-wrap: anywhere;
+    .leader-line {
+      display: block;
     }
 
     .stats-table {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
-      font-size: 33px;
+      font-size: 31px;
       line-height: 1.35;
     }
 
-    .stats-table tr {
-      border-bottom: 1.8px solid rgba(255, 0, 0, 0.55);
-    }
-
-    .stats-table tr:last-child {
-      border-bottom: 3px solid red;
-    }
-
     .stats-table td {
-      padding: 14px 4px;
-      vertical-align: middle;
+      border-bottom: 1.8px solid rgba(255, 0, 0, 0.55);
+      padding: 13px 0;
       white-space: nowrap;
     }
 
-    .stats-label {
-      width: 168px;
-      letter-spacing: 0.16em;
+    .stats-label { width: 174px; }
+    .stats-num { font-size: 38px; padding: 0 10px; }
+    .stats-total td {
+      border-bottom: 3px solid red;
+      padding-top: 19px;
+      font-size: 35px;
     }
 
-    .stats-num {
-      font-size: 38px;
-      padding: 0 6px;
+    .bottom-row {
+      height: 254px;
+      margin-top: 21px;
+      display: grid;
+      grid-template-columns: 1fr 405px;
+      gap: 34px;
+      overflow: hidden;
     }
 
-    .sign-row {
-      margin-top: 18px;
+    .notes-box {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .notes-title {
+      color: red;
+      font-size: 30px;
+      font-weight: 700;
+      border-bottom: 2px solid red;
+      padding-bottom: 5px;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      height: 145px;
+      overflow: hidden;
+      font-size: 25px;
+      line-height: 1.22;
+    }
+
+    .leave-block {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .leave-label {
+      color: #111;
+      font-weight: 700;
+      margin-bottom: 4px;
+      white-space: nowrap;
+    }
+
+    .leave-list {
+      color: blue;
+      font-weight: 700;
+      white-space: pre-wrap;
+      column-count: 2;
+      column-gap: 24px;
+      overflow: visible;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    .course-line {
+      margin-top: 9px;
+      border-top: 1.8px solid rgba(255, 0, 0, 0.55);
+      padding-top: 8px;
+      font-size: 26px;
+      line-height: 1.25;
+      white-space: normal;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    .signature-box {
+      align-self: end;
       text-align: right;
       font-size: 31px;
-      line-height: 1.25;
+      line-height: 1.45;
+      padding-bottom: 8px;
+      white-space: nowrap;
     }
 
-    @media (max-aspect-ratio: 4/3) {
-      #report-container { padding-left: 52px; padding-right: 52px; }
-      .title { font-size: 56px; }
-      .top-line { font-size: 28px; }
-    }
+    <?
+      function getVal(data) {
+        var str = "";
+        if (!data) return str;
+        for (var i = 0; i < data.length; i++) {
+          var rowText = "";
+          for (var j = 0; j < data[i].length; j++) {
+            if (data[i][j] !== "" && data[i][j] !== null) {
+              rowText += data[i][j];
+            }
+          }
+          if (rowText !== "") {
+            if (str !== "") str += "\n";
+            str += rowText;
+          }
+        }
+        return str;
+      }
+    ?>
   </style>
 </head>
 
 <body>
-  <?
-    function getVal(data) {
-      var str = "";
-      if (!data) return str;
-      for (var i = 0; i < data.length; i++) {
-        for (var j = 0; j < data[i].length; j++) {
-          if (data[i][j] !== "" && data[i][j] !== null) str += data[i][j];
-        }
-      }
-      return str;
-    }
-  ?>
-
   <div id="report-container">
-    <div class="title">呈奏</div>
+    <h1 class="title">呈奏</h1>
 
-    <div class="top-line">
-      <div class="buddha-name">
-        <span class="red-text"><?= getVal(getData1()) ?></span>　大慈大悲
-      </div>
+    <div class="top-row">
+      <div class="buddha-line"><span class="red-text"><?= getVal(getData1()) ?></span>　大慈大悲</div>
       <div class="date-line">
         天運歲次 <span class="red-text"><?= getVal(getData28()) ?></span> 年　
         西元 <span class="red-text"><?= getVal(getData27()) ?></span> 年　
@@ -244,62 +247,49 @@
       </div>
     </div>
 
-    <div class="main-grid">
-      <div class="left-column">
+    <div class="red-line"></div>
+
+    <div class="main-row">
+      <section>
         <div class="section-title">班務資料</div>
+        <table class="info-table">
+          <tr>
+            <td class="info-label">班　　名：</td>
+            <td class="info-value blue-text"><?= getVal(getData5()) ?></td>
+          </tr>
+          <tr>
+            <td class="info-label">主辦單位：</td>
+            <td class="info-value blue-text">寶光崇正 <?= getVal(getData6()) ?></td>
+          </tr>
+          <tr>
+            <td class="info-label">監　　班：</td>
+            <td class="info-value blue-text"><?= getVal(getData7()) ?></td>
+          </tr>
+          <tr>
+            <td class="info-label">主　　班：</td>
+            <td class="info-value blue-text"><?= getVal(getData8()) ?></td>
+          </tr>
+          <tr>
+            <td class="info-label">領　　班：</td>
+            <td class="info-value blue-text">
+              <span class="leader-line"><?= getVal(getData9()) ?></span>
+              <span class="leader-line"><?= getVal(getData10()) ?></span>
+            </td>
+          </tr>
+        </table>
+      </section>
 
-        <div class="info-area">
-          <table class="info-table">
-            <tr>
-              <td class="info-label">班　名：</td>
-              <td class="info-value blue-text"><?= getVal(getData5()) ?></td>
-            </tr>
-            <tr>
-              <td class="info-label">主辦單位：</td>
-              <td class="info-value blue-text">寶光崇正 <?= getVal(getData6()) ?></td>
-            </tr>
-            <tr>
-              <td class="info-label">監　班：</td>
-              <td class="info-value blue-text"><?= getVal(getData7()) ?></td>
-            </tr>
-            <tr>
-              <td class="info-label">主　班：</td>
-              <td class="info-value blue-text"><?= getVal(getData8()) ?></td>
-            </tr>
-            <tr>
-              <td class="info-label">領　班：</td>
-              <td class="info-value blue-text"><?= getVal(getData9()) ?><br><?= getVal(getData10()) ?></td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="notes-area">
-          <div class="section-title" style="margin-bottom:10px;">備　註</div>
-          <div class="notes-grid">
-            <div class="note-label">病假--</div>
-            <div class="note-text blue-text"><?= getVal(getData25()) ?></div>
-            <div class="note-label">事假--</div>
-            <div class="note-text blue-text"><?= getVal(getData26()) ?></div>
-          </div>
-          <div class="today-row">
-            <div>今日人事：</div>
-            <div class="today-text blue-text"><?= getVal(getData29()) ?></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="right-column">
+      <section>
         <div class="section-title">人員統計</div>
-
         <table class="stats-table">
           <tr>
-            <td class="stats-label">班　員：</td>
+            <td class="stats-label">班　　員：</td>
             <td>乾 <span class="blue-text stats-num"><?= getVal(getData11()) ?></span> 名</td>
             <td>坤 <span class="blue-text stats-num"><?= getVal(getData12()) ?></span> 名</td>
             <td>計 <span class="blue-text stats-num"><?= getVal(getData13()) ?></span> 名</td>
           </tr>
           <tr>
-            <td class="stats-label">小班長：</td>
+            <td class="stats-label">小 班 長：</td>
             <td>乾 <span class="blue-text stats-num"><?= getVal(getData14()) ?></span> 名</td>
             <td>坤 <span class="blue-text stats-num"><?= getVal(getData15()) ?></span> 名</td>
             <td>計 <span class="blue-text stats-num"><?= getVal(getData16()) ?></span> 名</td>
@@ -317,20 +307,39 @@
             <td></td>
           </tr>
           <tr>
-            <td class="stats-label">合　計：</td>
+            <td class="stats-label">合　　計：</td>
             <td>乾 <span class="blue-text stats-num"><?= getVal(getData21()) ?></span> 名</td>
             <td>坤 <span class="blue-text stats-num"><?= getVal(getData22()) ?></span> 名</td>
             <td></td>
           </tr>
-          <tr>
-            <td class="stats-label">共　計：</td>
+          <tr class="stats-total">
+            <td class="stats-label">共　　計：</td>
             <td colspan="3">乾坤 <span class="blue-text stats-num"><?= getVal(getData23()) ?></span> 名</td>
           </tr>
         </table>
+      </section>
+    </div>
 
-        <div class="sign-row">
-          弟子 <span class="blue-text"><?= getVal(getData24()) ?></span> 叩呈
+    <div class="bottom-row">
+      <section class="notes-box">
+        <div class="notes-title">備註與課程</div>
+        <div class="notes-grid">
+          <div class="leave-block">
+            <div class="leave-label">病假--</div>
+            <div class="leave-list" id="sick-list"><?= getVal(getData25()) ?></div>
+          </div>
+          <div class="leave-block">
+            <div class="leave-label">事假--</div>
+            <div class="leave-list" id="personal-list"><?= getVal(getData26()) ?></div>
+          </div>
         </div>
+        <div class="course-line">
+          今日人事課程：<span class="blue-text"><?= getVal(getData29()) ?></span>
+        </div>
+      </section>
+
+      <div class="signature-box">
+        弟子 <span class="blue-text"><?= getVal(getData24()) ?></span> 叩呈
       </div>
     </div>
   </div>
@@ -350,7 +359,25 @@
       container.style.transform = 'scale(' + scale + ')';
     }
 
-    window.addEventListener('load', autoScale);
+    function shrinkIfNeeded(selector, minSize) {
+      var el = document.querySelector(selector);
+      if (!el) return;
+      var size = parseFloat(window.getComputedStyle(el).fontSize);
+      while (el.scrollHeight > el.clientHeight && size > minSize) {
+        size -= 1;
+        el.style.fontSize = size + 'px';
+      }
+    }
+
+    function fitPage() {
+      shrinkIfNeeded('.info-table', 24);
+      shrinkIfNeeded('.stats-table', 24);
+      shrinkIfNeeded('.notes-grid', 18);
+      shrinkIfNeeded('.course-line', 19);
+      autoScale();
+    }
+
+    window.addEventListener('load', fitPage);
     window.addEventListener('resize', autoScale);
   </script>
 </body>
